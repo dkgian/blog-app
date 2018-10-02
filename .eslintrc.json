@@ -1,5 +1,15 @@
 {
     "extends": "airbnb",
+
+    "env": {
+        "browser": true,
+        "node": true
+    },
+
+    "globals": {
+        "document": false
+      },
+
     "rules": {
         "comma-dangle": ["error", "always-multiline"],
         "class-methods-use-this": "off",
