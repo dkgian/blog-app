@@ -21,6 +21,7 @@
           "specialLink": [ "to", "hrefLeft", "hrefRight" ],
           "aspects": [ "noHref", "invalidHref", "preferButton" ]
         }],
-        "no-new": 0
+        "no-new": 0,
+        "padded-blocks": ["error", "never"]
     }
 }
