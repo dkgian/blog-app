@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import promise from 'redux-promise'
 
 import './index.css'
-import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 
 import reducers from './reducers'
