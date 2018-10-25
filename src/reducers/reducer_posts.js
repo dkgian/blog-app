@@ -1,13 +1,18 @@
 import { mapKeys } from 'lodash'
 
-import { FETCH_POSTS } from '../actions/index'
+import { FETCH_POSTS, FETCH_POST } from '../actions'
 
-const initialState = null
+export default function (state = {}, action) {
+  const { data } = action.payload
 
-export default function (state = initialState, action) {
   switch (action.type) {
     case FETCH_POSTS:
-      return mapKeys(action.payload.data, 'id')
+      return mapKeys(data, 'id')
+    case FETCH_POST:
+      return {
+        ...state,
+        [data.id]: data,
+      }
     default:
       return state
   }

@@ -45,7 +45,7 @@ function mapStateToProps(state) {
 
 PostsIndex.propTypes = {
   fetchPosts: PropTypes.func.isRequired,
-  posts: PropTypes.shape({}),
+  posts: PropTypes.instanceOf(Array),
 }
 
 PostsIndex.defaultProps = {
