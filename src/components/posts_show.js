@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 import { fetchPost } from '../actions/index'
 
 class PostsShow extends Component {
@@ -18,6 +20,8 @@ class PostsShow extends Component {
 
     return (
       <div>
+        <Link to="/"> Go back </Link>
+
         <h2>
           Title:
           {' '}
@@ -48,6 +52,11 @@ function mapStateToProps({ posts }, ownProps) {
 PostsShow.propTypes = {
   fetchPost: PropTypes.func.isRequired,
   post: PropTypes.shape({}).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number,
+    }).isRequired,
+  }).isRequired,
 }
 
 export default connect(mapStateToProps, { fetchPost })(PostsShow)
