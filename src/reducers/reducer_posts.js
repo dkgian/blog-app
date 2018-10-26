@@ -1,8 +1,8 @@
-import { mapKeys } from 'lodash'
+import { mapKeys, omit } from 'lodash'
 
-import { FETCH_POSTS, FETCH_POST } from '../actions'
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from '../actions'
 
-export default function (state = {}, action) {
+export default function PostsReducer(state = {}, action) {
   const { data } = action.payload
 
   switch (action.type) {
@@ -13,6 +13,8 @@ export default function (state = {}, action) {
         ...state,
         [data.id]: data,
       }
+    case DELETE_POST:
+      return omit(state, action.payload)
     default:
       return state
   }

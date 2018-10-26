@@ -2,13 +2,20 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-
-import { fetchPost } from '../actions/index'
+import { Button } from 'react-bootstrap'
+import { fetchPost, deletePost } from '../actions/index'
 
 class PostsShow extends Component {
   componentDidMount() {
     const { id } = this.props.match.params
-    this.props.fetchPost()
+    this.props.fetchPost(id)
+  }
+
+  onDeleteClick() {
+    const { id } = this.props.match.params
+    this.props.deletePost(id, () => {
+      this.props.history.push('/')
+    })
   }
 
   render() {
@@ -40,6 +47,13 @@ class PostsShow extends Component {
           {post.content}
         </p>
 
+        <Button
+          onClick={this.onDeleteClick()}
+          className="btn btn-danger pull-xs-right"
+        >
+          Delete
+        </Button>
+
       </div>
     )
   }
@@ -50,6 +64,7 @@ function mapStateToProps({ posts }, ownProps) {
 }
 
 PostsShow.propTypes = {
+  history: PropTypes.instanceOf(Array).isRequired,
   fetchPost: PropTypes.func.isRequired,
   post: PropTypes.shape({}).isRequired,
   match: PropTypes.shape({
@@ -57,6 +72,7 @@ PostsShow.propTypes = {
       id: PropTypes.number,
     }).isRequired,
   }).isRequired,
+  deletePost: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, { fetchPost })(PostsShow)
+export default connect(mapStateToProps, { fetchPost, deletePost })(PostsShow)
